@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Header.css';
 import Button from '@material-ui/core/Button';
 import logo from '../../assets/logo.svg';
@@ -24,8 +24,8 @@ const customStyles = {
     }
 };
 
-const TabContainer = function(props){
-    return(
+const TabContainer = function (props) {
+    return (
         <Typography component="div" style={{ padding: 0, textAlign: 'center' }}>
             {props.children}
         </Typography>
@@ -36,9 +36,8 @@ TabContainer.propTypes = {
     children: PropTypes.node.isRequired
 }
 
-class Header extends Component{
-    constructor()
-    {
+class Header extends Component {
+    constructor() {
         super();
         this.state = {
             modalIsOpen: false,
@@ -80,17 +79,17 @@ class Header extends Component{
             contact: ""
         });
     }
-    
+
     closeModalHandler = () => {
-        this.setState({modalIsOpen: false})
+        this.setState({ modalIsOpen: false })
     }
 
     tabChangeHandler = (event, value) => {
-        this.setState({value});
+        this.setState({ value });
     }
 
     loginClickHandler = () => {
-        this.state.username === "" ? this.setState({usernameRequired: "dispBlock"}) : this.setState({usernameRequired: "dispNone"});
+        this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
         this.state.loginPassword === "" ? this.setState({ loginPasswordRequired: "dispBlock" }) : this.setState({ loginPasswordRequired: "dispNone" });
     }
 
@@ -130,8 +129,8 @@ class Header extends Component{
         this.setState({ contact: e.target.value });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <header className="app-header">
                     <img src={logo} className="app-logo" alt="logo" />
@@ -142,26 +141,26 @@ class Header extends Component{
                 <Modal ariaHideApp={false} isOpen={this.state.modalIsOpen} contentLabel="Login" onRequestClose={this.closeModalHandler} style={customStyles}>
                     <Tabs className="Tabs" value={this.state.value} onChange={this.tabChangeHandler}>
                         <Tab label="Login"></Tab>
-                        <Tab label="Register"/>
+                        <Tab label="Register" />
                     </Tabs>
                     {this.state.value === 0 &&
-                    <TabContainer>
-                    <FormControl required>
-                            <InputLabel htmlFor="username">Username</InputLabel>
-                            <Input id="username" type="text" username={this.state.username} onChange={this.inputUsernameChangeHandler}/>
-                            <FormHelperText className={this.state.usernameRequired}><span className="red">required</span></FormHelperText>
-                    </FormControl><br /><br />
-                    <FormControl required>
-                    <InputLabel htmlFor="loginPassword">Password</InputLabel>
+                        <TabContainer>
+                            <FormControl required>
+                                <InputLabel htmlFor="username">Username</InputLabel>
+                                <Input id="username" type="text" username={this.state.username} onChange={this.inputUsernameChangeHandler} />
+                                <FormHelperText className={this.state.usernameRequired}><span className="red">required</span></FormHelperText>
+                            </FormControl><br /><br />
+                            <FormControl required>
+                                <InputLabel htmlFor="loginPassword">Password</InputLabel>
                                 <Input id="loginPassword" type="password" loginpassword={this.state.loginPassword} onChange={this.inputLoginPasswordChangeHandler} />
                                 <FormHelperText className={this.state.loginPasswordRequired}>
                                     <span className="red">required</span>
                                 </FormHelperText>
-                    </FormControl><br/><br />
-                    <Button variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button>
-                    </TabContainer> 
+                            </FormControl><br /><br />
+                            <Button variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button>
+                        </TabContainer>
                     }
-                     {this.state.value === 1 &&
+                    {this.state.value === 1 &&
                         <TabContainer>
                             <FormControl required>
                                 <InputLabel htmlFor="firstname">First Name</InputLabel>
